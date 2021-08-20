@@ -1,13 +1,16 @@
 components:
     schemas:
         Sample:
-            description: A sample entity
+            description:
+                A sample entity
             properties:
-                name:
-                    description: The sample name.
-                    type: string
                 id:
-                    description: The sample ID.
+                    description:
+                        The sample ID.
+                    type: string
+                name:
+                    description:
+                        The sample name.
                     type: string
             type: object
 info:
@@ -26,13 +29,13 @@ paths:
             operationId: getAllSamples
             parameters:
                 - in: query
-                  name: pageNumber
                   default: 1
+                  name: pageNumber
                   schema:
                       type: integer
                 - in: query
-                  name: pageSize
                   default: 4
+                  name: pageSize
                   schema:
                       type: integer
             responses:
@@ -48,7 +51,7 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Sample"
                                 type: array
-            tags: [ "Sample" ]
+            tags: ["Sample"]
         post:
             operationId: createSample
             requestBody:
@@ -68,8 +71,24 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Sample"
-            tags: [ "Sample" ]
+            tags: ["Sample"]
     "/samples/{sampleId}":
+        delete:
+            operationId: deleteSample
+            parameters:
+                - in: path
+                  name: sampleId
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                204:
+                    content:
+                        application/json: {}
+                        application/xml: {}
+                    description:
+                        ""
+            tags: ["Sample"]
         get:
             operationId: getSample
             parameters:
@@ -87,23 +106,9 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Sample"
-                    description: ""
+                    description:
+                        ""
             tags: ["Sample"]
-        delete:
-            operationId: deleteSample
-            parameters:
-                - in: path
-                  name: sampleId
-                  required: true
-                  schema:
-                      type: string
-            responses:
-                204:
-                    content:
-                        application/json: { }
-                        application/xml: { }
-                    description: ""
-            tags: [ "Sample" ]
         put:
             operationId: putSample
             parameters:
@@ -129,6 +134,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Sample"
-                    description: ""
-            tags: [ "Sample" ]
-
+                    description:
+                        ""
+            tags: ["Sample"]
